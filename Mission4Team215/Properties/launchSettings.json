@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Mission4Team215": {
+      "commandName": "Project"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}

@@ -74,9 +74,9 @@ class Program
         do
         {
             Console.WriteLine($"Player {(isPlayer1Turn ? "1" : "2")}'s turn. Enter row (1-3):");
-            row = Convert.ToInt32((Console.ReadLine()) - 1);
+            row = (Convert.ToInt32(Console.ReadLine())) - 1;
             Console.WriteLine($"Player {(isPlayer1Turn ? "1" : "2")}'s turn. Enter column (1-3):");
-            col = Convert.ToInt32((Console.ReadLine()) - 1);
+            col = (Convert.ToInt32(Console.ReadLine())) - 1;
         } while (row < 0 || row > 2 || col < 0 || col > 2 || board[row, col] != ' ');
 
         board[row, col] = playerSymbol;
