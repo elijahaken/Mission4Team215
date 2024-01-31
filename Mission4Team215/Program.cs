@@ -68,20 +68,57 @@ class Program
 
     static void TakeTurn(bool isPlayer1Turn, char[,] board)
     {
-        int row, col;
+        string stRow;
+        string stCol;
+        int row = 4;
+        int col = 4;
         char playerSymbol = isPlayer1Turn ? 'X' : 'O';
+        bool validRow = false;
+        bool validCol = false;
 
         do
         {
             Console.WriteLine($"Player {(isPlayer1Turn ? "1" : "2")}'s turn. Enter row (1-3):");
-            row = (Convert.ToInt32(Console.ReadLine())) - 1;
-            if (row < 1 || row > 3 || !int.TryParse(row.ToString(), out _))
+            stRow = Console.ReadLine();
+            if(int.TryParse(stRow, out int parsedRow) && parsedRow > 0)
             {
-                Console.WriteLine("Please enter a row between 1 and 3");
+                row = (Convert.ToInt32(stRow)) - 1;
+                if (row < 0 || row > 2)
+                {
+                    Console.WriteLine("Please enter a number between 1 and 3");
+                }
+                else
+                {
+                    validRow = true;
+                }
             }
-            Console.WriteLine($"Player {(isPlayer1Turn ? "1" : "2")}'s turn. Enter column (1-3):");
-            col = (Convert.ToInt32(Console.ReadLine())) - 1;
-        } while (row < 1 || row > 3 || col < 1 || col > 3 || board[row, col] != ' ');
+            else
+            {
+                Console.WriteLine("Please enter a number");
+            }
+        } while (!validRow);
+
+        do
+        {
+            Console.WriteLine("Enter column (1-3):");
+            stCol = Console.ReadLine();
+            if (int.TryParse(stCol, out int parsedRow) && parsedRow > 0)
+            {
+                col = (Convert.ToInt32(stCol)) - 1;
+                if (col < 0 || col > 2)
+                {
+                    Console.WriteLine("Please enter a number between 1 and 3");
+                }
+                else
+                {
+                    validCol = true;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Please enter a number");
+            }
+        } while (!validCol);
 
         board[row, col] = playerSymbol;
     }
