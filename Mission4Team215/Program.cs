@@ -75,50 +75,64 @@ class Program
         char playerSymbol = isPlayer1Turn ? 'X' : 'O';
         bool validRow = false;
         bool validCol = false;
+        bool validGuess = false;
 
         do
         {
-            Console.WriteLine($"Player {(isPlayer1Turn ? "1" : "2")}'s turn. Enter row (1-3):");
-            stRow = Console.ReadLine();
-            if(int.TryParse(stRow, out int parsedRow) && parsedRow > 0)
+            do
             {
-                row = (Convert.ToInt32(stRow)) - 1;
-                if (row < 0 || row > 2)
+                Console.WriteLine($"Player {(isPlayer1Turn ? "1" : "2")}'s turn. Enter row (1-3):");
+                stRow = Console.ReadLine();
+                if (int.TryParse(stRow, out int parsedRow) && parsedRow > 0)
                 {
-                    Console.WriteLine("Please enter a number between 1 and 3");
+                    row = (Convert.ToInt32(stRow)) - 1;
+                    if (row < 0 || row > 2)
+                    {
+                        Console.WriteLine("Please enter an integer between 1 and 3");
+                    }
+                    else
+                    {
+                        validRow = true;
+                    }
                 }
                 else
                 {
-                    validRow = true;
+                    Console.WriteLine("Please enter an integer between 1 and 3");
                 }
-            }
-            else
-            {
-                Console.WriteLine("Please enter a number");
-            }
-        } while (!validRow);
+            } while (!validRow);
 
-        do
-        {
-            Console.WriteLine("Enter column (1-3):");
-            stCol = Console.ReadLine();
-            if (int.TryParse(stCol, out int parsedRow) && parsedRow > 0)
+            do
             {
-                col = (Convert.ToInt32(stCol)) - 1;
-                if (col < 0 || col > 2)
+                Console.WriteLine("Enter column (1-3):");
+                stCol = Console.ReadLine();
+                if (int.TryParse(stCol, out int parsedRow) && parsedRow > 0)
                 {
-                    Console.WriteLine("Please enter a number between 1 and 3");
+                    col = (Convert.ToInt32(stCol)) - 1;
+                    if (col < 0 || col > 2)
+                    {
+                        Console.WriteLine("Please enter an integer between 1 and 3");
+                    }
+                    else
+                    {
+                        validCol = true;
+                    }
                 }
                 else
                 {
-                    validCol = true;
+                    Console.WriteLine("Please enter an integer number");
                 }
+            } while (!validCol);
+
+            if (board[row, col] != ' ')
+            {
+                Console.WriteLine("This space is taken!");
             }
             else
             {
-                Console.WriteLine("Please enter a number");
+                validGuess = true;
             }
-        } while (!validCol);
+
+        } while (!validGuess);
 
         board[row, col] = playerSymbol;
     }
